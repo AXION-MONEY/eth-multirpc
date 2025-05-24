@@ -1,13 +1,23 @@
 [tool.poetry]
-name = "solver-multirpc"
-version = "3.1.11"
+name = "eth-multirpc"
+version = "4.0.0"
 description = "A robust Python library for interacting with Ethereum smart contracts via multiple RPC endpoints, ensuring reliability, availability, and load distribution with automatic retries on failure."
-authors = ["rorschach <rorschach45001@gmail.com>"]
+authors = ["MiKO <mikoronjoo@gmail.com>", "rorschach <rorschach45001@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [
-  { include = "multirpc" }
+keywords = ["eth", "multirpc", "web3"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
 ]
+packages = [
+    { include = "eth_multirpc" }
+]
+
+[tool.poetry.urls]
+homepage = "https://github.com/AXION-MONEY/eth-multirpc"
+bugtracker = "https://github.com/AXION-MONEY/eth-multirpc/issues"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
@@ -17,5 +27,5 @@ eth-account = ">=0.13.0"
 
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0"]
 build-backend = "poetry.core.masonry.api"

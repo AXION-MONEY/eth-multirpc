@@ -1,6 +1,6 @@
 import json
 
-from multirpc.utils import ChainConfigTest, NestedDict
+from eth_multirpc.utils import ChainConfigTest, NestedDict
 
 # Arbitrum Configuration
 ArbConfig = ChainConfigTest(

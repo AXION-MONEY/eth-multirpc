@@ -5,11 +5,11 @@ import random
 from eth_account import Account
 from web3.exceptions import MismatchedABI
 
-from multirpc import AsyncMultiRpc, MultiRpc
-from multirpc.constants import GasEstimationMethod, ViewPolicy
-from multirpc.utils import ChainConfigTest
-from tests.constants import ArbConfig, BaseConfig, PolyConfig, RPCsSupportingTxTrace, abi
-from tests.test_settings import LogLevel, PrivateKey1, PrivateKey2
+from eth_multirpc import AsyncMultiRpc, MultiRpc
+from eth_multirpc.constants import GasEstimationMethod, ViewPolicy
+from eth_multirpc.utils import ChainConfigTest
+from constants import ArbConfig, BaseConfig, PolyConfig, RPCsSupportingTxTrace, abi
+from test_settings import LogLevel, PrivateKey1, PrivateKey2
 
 PreviousBlock = 3
 
