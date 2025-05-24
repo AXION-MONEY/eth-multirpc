@@ -1,6 +1,6 @@
-# solver-MultiRpc: Reliable Ethereum Interactions with Multiple RPCs
+# eth-multirpc: Reliable Ethereum Interactions with Multiple RPCs
 
-`solver-MultiRpc` is a robust library designed to interact with Ethereum smart contracts
+`eth-multirpc` is a robust library designed to interact with Ethereum smart contracts
 using multiple RPC endpoints. This ensures reliability and availability
 by distributing the load across various endpoints and retrying operations on failure.
 The library provides both asynchronous (`AsyncMultiRpc`) and
@@ -15,10 +15,10 @@ synchronous (`MultiRpc`) interfaces to suit different use cases.
 
 ## Installation
 
-Install `solver-MultiRpc` using pip:
+Install `eth-multirpc` using pip:
 
 ```bash
-pip install solver-multiRPC
+pip install eth-multirpc
 ```
 
 ## Quick Start
@@ -32,8 +32,8 @@ Below is an example of how to use the AsyncMultiRpc class for asynchronous opera
 ```python
 import asyncio
 import json
-from multirpc.utils import NestedDict
-from multirpc import AsyncMultiRpc
+from eth_multirpc.utils import NestedDict
+from eth_multirpc import AsyncMultiRpc
 
 
 async def main():
@@ -66,7 +66,7 @@ asyncio.run(main())
 Below is an example of how to use the MultiRpc class for synchronous operations:
 
 ```python
-from multirpc import MultiRpc
+from eth_multirpc import MultiRpc
 
 
 def main():
@@ -92,10 +92,12 @@ Initialize the `MultiRpc` class with your RPC URLs, contract address, and contra
 ```python
 multi_rpc = MultiRpc(rpcs, contract_address='YOUR_CONTRACT_ADDRESS', contract_abi=abi)
 ```
-- `enable_estimate_gas_limit=True` will check if tx can be done successfully without paying fee, 
-and also calculate gas limit for tx
-- You can pass a list of RPCs to `rpcs_supporting_tx_trace=[]` to identify which of the provided RPCs (`rpcs`) support `tx_trace`. 
-Then, when a transaction fails, you can retrieve the trace of the transaction.
+
+- `enable_estimate_gas_limit=True` will check if tx can be done successfully without paying fee,
+  and also calculate gas limit for tx
+- You can pass a list of RPCs to `rpcs_supporting_tx_trace=[]` to identify which of the provided RPCs (`rpcs`) support
+  `tx_trace`.
+  Then, when a transaction fails, you can retrieve the trace of the transaction.
 
 ### Setting Account
 
@@ -112,8 +114,9 @@ Call a function from your contract:
 ```python
 result = await multi_rpc.functions.YOUR_FUNCTION().call()
 ```
+
 By default we return tx_receipt(wait for 90 second).
-if you don't want to return tx_receipt, pass `wait_for_receipt=0` to `call()` 
+if you don't want to return tx_receipt, pass `wait_for_receipt=0` to `call()`
 
 ### Calling Contract with another Private Key
 
@@ -159,7 +162,9 @@ You can pass a `GasEstimation` object to the `MultiRpc` or `AsyncMultiRpc` class
 to configure how gas prices are estimated. Here is an example of how to do this:
 
 ```python
-from multirpc import MultiRpc, GasEstimation, GasEstimationMethod
+from eth_multirpc import MultiRpc
+from eth_multirpc.gas_estimation import GasEstimation
+from eth_multirpc.constants import GasEstimationMethod
 
 gas_estimation = GasEstimation(
     chain_id=1,  # Mainnet
@@ -177,8 +182,10 @@ You need to extend the `GasEstimation` class and override the _`custom_gas_estim
 Here is an example:
 
 ```python
-from multirpc import GasEstimation, TxPriority, GasEstimationMethod
 from web3 import Web3
+from eth_multirpc.gas_estimation import GasEstimation
+from eth_multirpc.utils import TxPriority
+from eth_multirpc.constants import GasEstimationMethod
 
 
 class CustomGasEstimation(GasEstimation):
